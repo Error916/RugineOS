@@ -11,6 +11,8 @@ use error_os_rust::println;
 pub extern "C" fn _start() -> ! {
     println!("Hello World{}", "!");
 
+    error_os_rust::init();
+
     #[cfg(test)]
     test_main();
 
