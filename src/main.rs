@@ -9,14 +9,15 @@ use error_os_rust::println;
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
-    println!("Hello World{}", "!");
+    println!("Hello World!");
 
     error_os_rust::init();
 
     #[cfg(test)]
     test_main();
 
-    loop {}
+    println!("no crush");
+    error_os_rust::hlt_loop();
 }
 
 /// This function is called on panic.
@@ -24,7 +25,7 @@ pub extern "C" fn _start() -> ! {
 #[panic_handler]
 fn panic(info: &PanicInfo) -> ! {
     println!("{}", info);
-    loop {}
+    error_os_rust::hlt_loop();
 }
 
 #[cfg(test)]
